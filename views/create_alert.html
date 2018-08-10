@@ -1,21 +1,22 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/html">
+<html>
 <head>
     <h1>Weather Alert</h1>
 </head>
 
 <body>
-<img src="{{ image_url }}">  </img> <br>
-Signed in as : {{ session['username'] }}<br><br>
+<img src="{{ image_url }}">     <br>
+Signed in as : {{ name }}<br><br>
 
 Location: <input type="text" name="location"><br><br>
 Email: <input type="text" name="Email"><br><br>
 <h1>Settings:</h1>
 
 <form action="/">
-  <input type="checkbox" name="vehicle1" value="Bike"> I have a bike<br>
-  <input type="checkbox" name="vehicle2" value="Car"> I have a car<br>
-  <input type="checkbox" name="vehicle3" value="Boat" checked> I have a boat<br><br>
+  <input type="checkbox" name="cb1" value="daily report"> Receive daily report<br>
+  <input type="checkbox" name="cb2" value="rain alert"> Receive rain alerts<br>
+  <input type="checkbox" name="cb3" value="SMS"> Receive alerts via SMS<br>
+  <input type="checkbox" name="cb4" value="Email"> Receive alerts via Email<br><br>
+
   <input type="submit" value="save-settings">
   <input type="submit" value="resend-alert">
 </form>

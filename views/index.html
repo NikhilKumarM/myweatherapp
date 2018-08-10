@@ -4,9 +4,13 @@
     <meta name="google-signin-client_id" content="508806358642-pfcv344atn2hj4rv35g4disf213j1su8.apps.googleusercontent.com">
     <script src="https://apis.google.com/js/platform.js" async defer></script>
       <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+      <h1>Weather Alert</h1>
   </head>
   <body>
+
+<form action="/login" method="post">
     <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+</form>
     <script>
       function onSignIn(googleUser) {
         // Useful data for your client-side scripts:
@@ -20,24 +24,38 @@
         // The ID token you need to pass to your backend:
         var id_token = googleUser.getAuthResponse().id_token;
         console.log("ID Token: " + id_token);
-          $.ajax({
+
+
+        {#var xhttp = new XMLHttpRequest();#}
+        {# xhttp.open("POST", "_get_post_json", true);#}
+        {# xhttp.setRequestHeader("Content-type", "application/json");#}
+        {# xhttp.send(JSON.stringify({name: profile.getName(),#}
+        {#                   image_url : profile.getImageUrl(),#}
+        {#                   email : profile.getEmail(),#}
+        {#                   user_id : profile.getId(),#}
+        {#                   id_token : id_token}));#}
+                $.ajax({
     type: "POST",
     url: "{{ url_for("get_post_json") }}",
     contentType: "application/json",
-    data: JSON.stringify({'name': profile.getName(),
-                           'image_url' : profile.getImageUrl(),
-                           'email' : profile.getEmail(),
-                           'user_id' : profile.getId(),
-                            'id_token' : id_token}),
-    dataType: "json",
+    data: JSON.stringify({name: profile.getName(),
+                           image_url : profile.getImageUrl(),
+                           email : profile.getEmail(),
+                           user_id : profile.getId(),
+                            id_token : id_token}),
     success: function(response) {
+        console.log("In success")
         console.log(response);
+        window.location.href = '/get_post_json';
     },
     error: function(err) {
         console.log(err);
     }
 });
+
+
       };
+
     </script>
   </body>
 </html>
